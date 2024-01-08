@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+/*import * as vscode from "vscode";
 
 export class CMakeExtraInfoSupport implements vscode.HoverProvider {
     provideHover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken): vscode.ProviderResult<vscode.Hover> {
@@ -12,7 +12,7 @@ export class CMakeExtraInfoSupport implements vscode.HoverProvider {
             cmVariablesSuggestionsExact(value),
             cmModulesSuggestionsExact(value),
             cmPropertiesSuggestionsExact(value),
-            */
+            
         ]).then(function (results) {
             const suggestions = Array.prototype.concat.apply([], results);
             if (suggestions.length === 0) {
@@ -25,8 +25,9 @@ export class CMakeExtraInfoSupport implements vscode.HoverProvider {
                 lines = lines.slice(2, lines.length);
                 let hover = new Hover({ language: 'md', value: lines.join('\n') });                
                 return hover;
-            });*/           
+            });        
             return null;
         });
     }
 }
+*/

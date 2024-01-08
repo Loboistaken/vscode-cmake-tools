@@ -848,7 +848,7 @@
       {
         "language": "cmake",
         "scopeName": "source.cmake",
-        "path": "./syntaxes/CMake.tmLanguage."
+        "path": "./syntaxes/CMake.tmLanguage"
       },
       {
         "language": "cmake-cache",
@@ -3777,9 +3777,6 @@
     "xml2js": "^0.5.0",
     "tsconfig-paths*/json5": "^1.0.2",
     "minimatch": "^3.0.5"
-  },
-  "extensionPack": [
-    "twxs.cmake"
-  ],
+  }, 
   "packageManager": "yarn@1.22.19"
 }

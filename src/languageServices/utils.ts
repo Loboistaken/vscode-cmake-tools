@@ -1,4 +1,4 @@
-export function suggestionHelper(cmakeCmd: string, currentWord: string, type: string, insertText: string, matchPredicate: any): Promise<any> {
+/*export function suggestionHelper(cmakeCmd: string, currentWord: string, type: string, insertText: string, matchPredicate: any): Promise<any> {
     
     return Promise.resolve(false);
 }
@@ -25,7 +25,7 @@ function commandArgs2Array(text: string): string[] {
     return arr;
 }
 
-/*
+
 function cmModuleInsertText(module: string) {
     if (module.indexOf('Find') == 0) {
         return 'find_package(' + module.replace('Find', '') + '${1: REQUIRED})';

@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+/*import * as vscode from "vscode";
 
 export class CMakeSuggestionSupport implements vscode.CompletionItemProvider {
     public triggerCharacters: string[] = [];
@@ -22,7 +22,7 @@ export class CMakeSuggestionSupport implements vscode.CompletionItemProvider {
                 var suggestions = Array.prototype.concat.apply([], results);
                 resolve(suggestions);
             }).catch(err => { reject(err); });
-        });*/
+        });
 
         return;
     }
@@ -32,8 +32,9 @@ export class CMakeSuggestionSupport implements vscode.CompletionItemProvider {
         return promises[type](item.label).then(function (result: string) {
             item.documentation = result.split('\n')[3];
             return item;
-        });*/
+        });
         return;
     }
     
 }
+*/
