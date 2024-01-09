@@ -1,33 +1,41 @@
-/*import * as vscode from "vscode";
+import * as vscode from "vscode";
+import { cmCommandsSuggestionsExact, cmModulesSuggestionsExact, cmPropertiesSuggestionsExact, cmVariablesSuggestionsExact, cmakeHelpMethod, cmakeTypeFromvscodeKind } from "./utils";
 
+// Show Tooltip on mouse over
 export class CMakeExtraInfoSupport implements vscode.HoverProvider {
-    provideHover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken): vscode.ProviderResult<vscode.Hover> {
+    public async provideHover(
+        document: vscode.TextDocument,
+        position: vscode.Position,
+        _token: vscode.CancellationToken
+    ): Promise<vscode.Hover> {
         const range = document.getWordRangeAtPosition(position);
         const value = document.getText(range);
-        const promises = "test"; //cmake_help_all();
 
-        return Promise.all([
-            /*
+        const results = await Promise.all([
             cmCommandsSuggestionsExact(value),
             cmVariablesSuggestionsExact(value),
             cmModulesSuggestionsExact(value),
-            cmPropertiesSuggestionsExact(value),
-            
-        ]).then(function (results) {
-            const suggestions = Array.prototype.concat.apply([], results);
-            if (suggestions.length === 0) {
-                return null;
-            }
-            const suggestion: vscode.CompletionItem = suggestions[0];
-            
-            /* return promises[cmakeTypeFromvscodeKind(suggestion.kind)](suggestion.label).then(function (result: string) {
-                let lines = result.split('\n');
-                lines = lines.slice(2, lines.length);
-                let hover = new Hover({ language: 'md', value: lines.join('\n') });                
-                return hover;
-            });        
-            return null;
+            cmPropertiesSuggestionsExact(value)
+        ]);
+        const suggestions = Array.prototype.concat.apply([], results);
+        if (suggestions.length === 0) {
+            return new vscode.Hover({
+                language: "md",
+                value: ""
+            });
+        }
+        const suggestion: vscode.CompletionItem = suggestions[0];
+
+        const result = await cmakeHelpMethod(
+            cmakeTypeFromvscodeKind(suggestion.kind),
+            suggestion.label as string
+        );
+        let lines = result.split("\n");
+        lines = lines.slice(2, lines.length);
+        const hover = new vscode.Hover({
+            language: "md",
+            value: lines.join("\n")
         });
+        return hover;
     }
 }
-*/
