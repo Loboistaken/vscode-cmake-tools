@@ -69,20 +69,20 @@
   "contributes": {
     "languages": [
       {
-        "id": "cmake",
+        "id": "cmake-tools-cmake",
         "extensions": [
           ".cmake"
         ],
         "filenames": ["CMakeLists.txt"],
         "aliases": [
-          "CMake"
+          "[CMake Tools] CMake"
         ]
       },
       {
-        "id": "cmake-cache",
+        "id": "cmake-tools-cache",
         "filenames": ["CMakeCache.txt"],
         "aliases": [
-          "CMake Cache"
+          "[CMake Tools] CMake Cache"
         ]
       }
     ],
@@ -846,12 +846,12 @@
     ],
     "grammars": [
       {
-        "language": "cmake",
+        "language": "cmake-tools-cmake",
         "scopeName": "source.cmake",
         "path": "./syntaxes/CMake.tmLanguage"
       },
       {
-        "language": "cmake-cache",
+        "language": "cmake-tools-cache",
         "scopeName": "source.cmakecache",
         "path": "./syntaxes/CMakeCache.tmLanguage"
       }
@@ -921,7 +921,7 @@
             "type": "cmake",
             "label": "%cmake-tools.debugger.label%",
             "languages": [
-                "cmake"
+                "cmake", "cmake-tools-cmake"
             ],
             "configurationAttributes": {
                 "launch": {

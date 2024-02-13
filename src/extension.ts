@@ -2319,55 +2319,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<api.CM
         await vscode.window.showWarningMessage(localize('uninstall.old.cmaketools', 'Please uninstall any older versions of the CMake Tools extension. It is now published by Microsoft starting with version 1.2.0.'));
     }
 
-    vscode.commands.registerCommand("cmake.onlineHelp", async () => {
-        // The code you place here will be executed every time your command is executed
-        // Display a message box to the user
-        const editor = vscode.window.activeTextEditor;
-        if (!editor) {
-            return; // No open text editor
-        }
-        const selection = editor.selection;
-        const document = editor.document;
-        const position = selection.start;
-        let currentWord = document.getText(selection);
-        const wordAtPosition = document.getWordRangeAtPosition(position);
-
-        if (
-            wordAtPosition &&
-            wordAtPosition.start.character < position.character
-        ) {
-            const word = document.getText(wordAtPosition);
-            currentWord = word;
-        }
-
-        await vscode.window
-            .showInputBox({
-                prompt: "Search on Cmake online documentation",
-                placeHolder: currentWord
-            })
-            .then(async function (result) {
-                if (typeof result !== "undefined") {
-                    // Escape
-                    if (result.length === 0) {
-                        //
-                        result = currentWord;
-                    }
-                    if (result !== "" && result !== undefined) {
-                        await cmake_online_help(result);
-                    }
-                }
-            });
-    });
-
     const CMAKE_LANGUAGE = "cmake";
-    const CMAKE_SELECTOR: vscode.DocumentSelector = [
-        {
-            language: CMAKE_LANGUAGE, scheme: 'file'
-        },
-        {
-            language: CMAKE_LANGUAGE, scheme: 'untitled'
-        }
-    ];
 
     vscode.languages.setLanguageConfiguration(CMAKE_LANGUAGE, {
         indentationRules: {
