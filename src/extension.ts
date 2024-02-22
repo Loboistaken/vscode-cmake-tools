@@ -320,10 +320,6 @@ export class ExtensionManager implements vscode.Disposable {
         return this.statusBar;
     }
 
-    public getRawCMakePath(): string {
-        return this.workspaceConfig.rawCMakePath;
-    }
-
     /**
      * Create a new extension manager instance. There must only be one!
      * @param ctx The extension context
