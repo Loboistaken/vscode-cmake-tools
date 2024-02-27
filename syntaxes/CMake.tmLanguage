@@ -23,7 +23,7 @@
 			<key>comment</key>
 			<string>cmakeOperators</string>
 			<key>match</key>
-			<string>\b(?i:ABSOLUTE|AND|BOOL|CACHE|COMMAND|COMMENT|DEFINED|DOC|EQUAL|EXISTS|EXT|FALSE|GREATER|GREATER_EQUAL|INTERNAL|IN_LIST|IS_ABSOLUTE|IS_DIRECTORY|IS_NEWER_THAN|IS_SYMLINK|LESS|LESS_EQUAL|MATCHES|NAME|NAMES|NAME_WE|NOT|OFF|ON|OR|PATH|PATHS|POLICY|PROGRAM|STREQUAL|STRGREATER|STRGREATER_EQUAL|STRING|STRLESS|STRLESS_EQUAL|TARGET|TEST|TRUE|VERSION_EQUAL|VERSION_GREATER|VERSION_GREATER_EQUAL|VERSION_LESS)\b</string>
+			<string>\b(?i:ABSOLUTE|AND|BOOL|CACHE|COMMAND|COMMENT|DEFINED|DOC|EQUAL|EXISTS|EXT|FALSE|GREATER|GREATER_EQUAL|IGNORE|INTERNAL|IN_LIST|IS_ABSOLUTE|IS_DIRECTORY|IS_NEWER_THAN|IS_SYMLINK|LESS|LESS_EQUAL|MATCHES|NAME|NAMES|NAME_WE|NO|NOT|NOTFOUND|OFF|ON|OR|PATH|PATHS|POLICY|PROGRAM|STREQUAL|STRGREATER|STRGREATER_EQUAL|STRING|STRLESS|STRLESS_EQUAL|TARGET|TEST|TRUE|VERSION_EQUAL|VERSION_GREATER|VERSION_GREATER_EQUAL|VERSION_LESS|YES)\b</string>
 			<key>name</key>
 			<string>keyword.cmake</string>
 		</dict>
@@ -31,9 +31,17 @@
 			<key>comment</key>
 			<string>Commands</string>
 			<key>match</key>
-			<string>^\s*\b(?i:add_compile_options|add_custom_command|add_custom_target|add_definitions|add_dependencies|add_executable|add_library|add_subdirectory|add_test|aux_source_directory|break|build_command|build_name|cmake_host_system_information|cmake_minimum_required|cmake_policy|configure_file|continue|create_test_sourcelist|ctest_build|ctest_configure|ctest_coverage|ctest_empty_binary_directory|ctest_memcheck|ctest_read_custom_files|ctest_run_script|ctest_sleep|ctest_start|ctest_submit|ctest_test|ctest_update|ctest_upload|define_property|else|elseif|enable_language|enable_testing|endforeach|endfunction|endif|endmacro|endwhile|exec_program|execute_process|export|export_library_dependencies|file|find_file|find_library|find_package|find_path|find_program|fltk_wrap_ui|foreach|function|get_cmake_property|get_directory_property|get_filename_component|get_property|get_source_file_property|get_target_property|get_test_property|if|include|include_directories|include_external_msproject|include_regular_expression|install|install_files|install_programs|install_targets|link_directories|link_libraries|list|load_cache|load_command|macro|make_directory|mark_as_advanced|math|message|option|output_required_files|project|qt_wrap_cpp|qt_wrap_ui|remove|remove_definitions|return|separate_arguments|set|set_directory_properties|set_property|set_source_files_properties|set_target_properties|set_tests_properties|site_name|source_group|string|subdir_depends|subdirs|target_compile_definitions|target_compile_features|target_compile_options|target_include_directories|target_link_libraries|target_sources|try_compile|try_run|unset|use_mangled_mesa|utility_source|variable_requires|variable_watch|while|write_file)\b</string>
+			<string>^\s*\b(?i:add_compile_definitions|add_compile_options|add_custom_command|add_custom_target|add_definitions|add_dependencies|add_executable|add_library|add_link_options|add_subdirectory|add_test|aux_source_directory|build_command|build_name|cmake_host_system_information|cmake_minimum_required|cmake_parse_arguments|cmake_policy|configure_file|create_test_sourcelist|ctest_build|ctest_configure|ctest_coverage|ctest_empty_binary_directory|ctest_memcheck|ctest_read_custom_files|ctest_run_script|ctest_sleep|ctest_start|ctest_submit|ctest_test|ctest_update|ctest_upload|define_property|enable_language|enable_testing|exec_program|execute_process|export|export_library_dependencies|file|find_file|find_library|find_package|find_path|find_program|fltk_wrap_ui|get_cmake_property|get_directory_property|get_filename_component|get_property|get_source_file_property|get_target_property|get_test_property|include|include_directories|include_external_msproject|include_guard|include_regular_expression|install|install_files|install_programs|install_targets|link_directories|link_libraries|list|load_cache|load_command|make_directory|mark_as_advanced|math|message|option|output_required_files|project|qt_wrap_cpp|qt_wrap_ui|remove|remove_definitions|return|separate_arguments|set|set_directory_properties|set_property|set_source_files_properties|set_target_properties|set_tests_properties|site_name|source_group|string|subdir_depends|subdirs|target_compile_definitions|target_compile_features|target_compile_options|target_include_directories|target_link_directories|target_link_libraries|target_link_options|target_sources|try_compile|try_run|unset|use_mangled_mesa|utility_source|variable_requires|variable_watch|write_file)\b</string>
 			<key>name</key>
 			<string>keyword.cmake</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Commands</string>
+			<key>match</key>
+			<string>^\s*\b(?i:break|continue|else|elseif|endforeach|endfunction|endif|endmacro|endwhile|foreach|function|if|macro|while)\b</string>
+			<key>name</key>
+			<string>keyword.cmake.control_flow</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -52,6 +60,12 @@
 		<dict>
 			<key>match</key>
 			<string>\$ENV\{\w+\}</string>
+			<key>name</key>
+			<string>storage.source.cmake</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\$CACHE\{\w+\}</string>
 			<key>name</key>
 			<string>storage.source.cmake</string>
 		</dict>
@@ -80,15 +94,6 @@
 			<string>\]\1\]</string>
 			<key>name</key>
 			<string>comment.source.cmake</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>\\(.|$)</string>
-					<key>name</key>
-					<string>constant.character.escape</string>
-				</dict>
-			</array>
 		</dict>	
 		
 		<dict>
@@ -100,15 +105,6 @@
 			<string>\]\1\]</string>
 			<key>name</key>
 			<string>argument.source.cmake</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>\\(.|$)</string>
-					<key>name</key>
-					<string>constant.character.escape</string>
-				</dict>
-			</array>
 		</dict>	
 			
 		<dict>
@@ -167,12 +163,19 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<!-- cf https://github.com/twxs/vs.language.cmake/issues/14 -->
-			<string>Escaped Strings</string>
+			<string>Properties on Commands</string>
+			<key>match</key>
+			<string>\b(?i:ALL|APPEND|BOOL|BUILD|BYPRODUCTS|CACHE|CAPTURE_CMAKE_ERROR|CMAKE_FIND_PACKAGE_NAME|CMAKE_FIND_ROOT_PATH_BOTH|CMAKE_FLAGS|COMMAND|COMMAND_EXPAND_LISTS|COMMENT|COMPILE_DEFINITIONS|COMPILE_OUTPUT_VARIABLE|COMPONENT|CONDITION|CONFIGURATION|CONFIGURATIONS|CONTENT|COPY_FILE|COPY_FILE_ERROR|COPYONLY|DEFECT_COUNT|DEPENDS|DEPFILE|DESTINATION|DIRECTORY|DOC|ENCODING|END|ESCAPE_QUOTES|EXCLUDE|EXCLUDE_FIXTURE|EXCLUDE_FIXTURE_CLEANUP|EXCLUDE_FIXTURE_SETUP|EXCLUDE_FROM_ALL|EXCLUDE_LABEL|EXPECTED_HASH|EXPECTED_MD|EXPR|FILEPATH|FILES|FILTER|FIND|FLAGS|GET|GLOBAL|HINTS|HTTPHEADER|IMPLICIT_DEPENDS|INACTIVITY_TIMEOUT|INCLUDE|INCLUDE_LABEL|INPUT|INPUT_FILE|INSERT|INSTALL|INTERNAL|LABELS|LENGTH|LENGTH_MAXIMUM|LENGTH_MINIMUM|LIMIT_COUNT|LIMIT_INPUT|LIMIT_OUTPUT|LINK_LIBRARIES|LOG|MAIN_DEPENDENCY|MD|NAMES|NETRC|NETRC_FILE|NEWLINE_CONSUME|NEWLINE_STYLE|NO_CMAKE_FIND_ROOT_PATH|NO_HEX_CONVERSION|NUMBER_ERRORS|NUMBER_WARNINGS|ONLY_CMAKE_FIND_ROOT_PATH|OPTIONAL|OPTIONS|OUTPUT|OUTPUT_QUIET|OUTPUT_VARIABLE|PACKAGE_FIND_NAME|PACKAGE_VERSION|PARALLEL_LEVEL|PARTS|PATH|PATH_SUFFIXES|PERMISSIONS|PRE_BUILD|PREFIX|PROJECT_NAME|QUIET|REGEX|REGULAR_EXPRESSION|REMOVE_AT|REMOVE_DUPLICATES|RENAME|RESULT_VARIABLE|RESULTS_VARIABLE|RETRY_COUNT|RETRY_DELAY|RETURN_VALUE|REVERSE|RUN_OUTPUT_VARIABLE|SCHEDULE_RANDOM|SHOW_PROGRESS|SORT|SOURCE|SOURCES|START|STATIC|STATUS|STOP_TIME|STRIDE|STRING|TARGET|TEST|TEST_LOAD|TIMEOUT|TLS_CAINFO|TLS_VERIFY|TREE|TYPE|USERPWD|USES_TERMINAL|VARIABLE|VERBATIM|WORKING_DIRECTORY)\b</string>
+			<key>name</key>
+			<string>entity.source.cmake</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Normal Strings</string>
 			<key>begin</key>
-			<string>\\"</string>
+			<string>(?&lt;!\\)"</string>
 			<key>end</key>
-			<string>\\"</string>
+			<string>"</string>
 			<key>name</key>
 			<string>string.source.cmake</string>
 			<key>patterns</key>
@@ -183,24 +186,23 @@
 					<key>name</key>
 					<string>constant.character.escape</string>
 				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Normal Strings</string>
-			<key>begin</key>
-			<string>"</string>
-			<key>end</key>
-			<string>"</string>
-			<key>name</key>
-			<string>string.source.cmake</string>
-			<key>patterns</key>
-			<array>
 				<dict>
 					<key>match</key>
-					<string>\\(.|$)</string>
+					<string>\$\{\w+\}</string>
 					<key>name</key>
-					<string>constant.character.escape</string>
+					<string>storage.source.cmake</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\$ENV\{\w+\}</string>
+					<key>name</key>
+					<string>storage.source.cmake</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\$CACHE\{\w+\}</string>
+					<key>name</key>
+					<string>storage.source.cmake</string>
 				</dict>
 			</array>
 		</dict>
@@ -210,7 +212,7 @@
 			<key>comment</key>
 			<string>Derecated keyword</string>
 			<key>match</key>
-			<string>\bBUILD_NAME\b</string>
+			<string>\b(?i:ABSTRACT_FILES|BUILD_NAME|SOURCE_FILES|SOURCE_FILES_REMOVE|VTK_MAKE_INSTANTIATOR|VTK_WRAP_JAVA|VTK_WRAP_PYTHON|VTK_WRAP_TCL|WRAP_EXCLUDE_FILES)\b</string>
 			<key>name</key>
 			<string>invalid.deprecated.source.cmake</string>
 		</dict>
