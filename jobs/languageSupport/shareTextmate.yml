@@ -1,0 +1,39 @@
+# This pipeline is designed to foster sharing our text mate grammars.
+
+resources: 
+  repositories:
+    - repository: self
+      clean: true
+    - repository: VS-Platform
+      type: git
+      name: VS-Platform
+
+trigger: main
+pr: none
+
+pool: 
+  name: "AzurePipeline-EO"
+  demands:
+    - ImageOverride -equals AzurePipelinesWindows2022compliant
+
+steps:
+  - task: CmdLine@2
+    inputs: 
+      script: |
+        Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/$(targetPath)
+        $differences = git diff --exit-code
+        if ( $differences )
+        {
+            git checkout -b updatingCMakeTextmates/$(Date:yyMMdd)$(Rev:rrr)
+            git add *; git commit -m "updating textmate"
+            git push --set-upstream origin updatingCMakeTextmates/$(Date:yyMMdd)$(Rev:rrr)
+            $env:AZURE_DEVOPS_EXT_PAT = $(System.AccessToken)
+            az repos pr create --draft true --title "[Textmate AutoPR] $(Date:yyMMdd)$(Rev:rrr)" --org $(orgUrl) -p DevDiv
+        }
+        else
+        {
+            Write-Output "no differences"
+        }
+      workingDirectory: $(Build.SourcesDirectory)/VS-Platform
+
+  
