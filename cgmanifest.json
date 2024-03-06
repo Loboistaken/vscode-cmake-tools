@@ -15,7 +15,7 @@
                 "Type": "git",
                 "git": {
                     "repositoryUrl": "https://github.com/Kitware/CMake",
-                    "commitHash": "5e984bb35232116a54de7db39788cb162ca7c263"
+                    "commitHash": "1eed682d7cca9bb2c2b0709a6c3202a3b08613b2"
                 }
             }
         }
