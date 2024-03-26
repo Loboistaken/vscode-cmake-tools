@@ -12,7 +12,7 @@ trigger: none
 pr: none
 
 pool: 
-  name: "AzurePipeline-EO"
+  name: "AzurePipelines-EO"
   demands:
     - ImageOverride -equals AzurePipelinesWindows2022compliant
 
