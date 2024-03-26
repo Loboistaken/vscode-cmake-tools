@@ -23,9 +23,10 @@ steps:
     inputs: 
       targetType: inline
       script: |
-        Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/${{ variables.targetPath }}
-        git diff
+        Write-Output ${{variables.targetPath}}
+        Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/${{variables.targetPath}}
         $differences = git diff --exit-code
+        Write-Output $differences
         if ( $differences )
         {
             git checkout -b updatingCMakeTextmates/$(Date:yyMMdd)$(Rev:rrr)
