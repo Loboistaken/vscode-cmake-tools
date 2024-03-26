@@ -23,7 +23,7 @@ steps:
     inputs: 
       targetType: inline
       script: |
-        Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/$(targetPath)
+        Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/${{ variables.targetPath }}
         $differences = git diff --exit-code
         if ( $differences )
         {
