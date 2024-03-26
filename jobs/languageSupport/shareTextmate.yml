@@ -17,6 +17,8 @@ pool:
     - ImageOverride -equals AzurePipelinesWindows2022compliant
 
 steps:
+  - checkout: self
+  - checkout: VS-Platform
   - task: CmdLine@2
     inputs: 
       script: |
