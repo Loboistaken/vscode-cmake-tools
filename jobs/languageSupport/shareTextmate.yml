@@ -16,8 +16,7 @@ pool:
   demands:
     - ImageOverride -equals AzurePipelinesWindows2022compliant
 
-variables:
-  date: $(Date:yyMMdd)$(Rev:rrr)
+name: $(Date:yyMMdd)$(Rev:rrr)
 
 steps:
   - checkout: self
@@ -27,16 +26,18 @@ steps:
       targetType: inline
       script: |
         Write-Output "${{variables.targetPath}}"
-        Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/src/Productivity/TextMate/VSWindows/Setup/Starterkit/Extensions/cmake/Syntaxes
+        Write-Output "$env:TARGETPATH"
+        Write-Output "$env:BUILD_BUILDNUMBER"
+        Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/$env:TARGETPATH
         $differences = git diff --exit-code
         Write-Output "$differences"
         if ( $differences )
         {
-            git checkout -b updatingCMakeTextmates/${{variables.date}}
+            git checkout -b updatingCMakeTextmates/$env:BUILD_BUILDNUMBER
             git add *; git commit -m "updating textmate"
-            git push --set-upstream origin updatingCMakeTextmates/${{variables.date}}
+            git push --set-upstream origin updatingCMakeTextmates/$env:BUILD_BUILDNUMBER
             $env:AZURE_DEVOPS_EXT_PAT = $(System.AccessToken)
-            az repos pr create --draft true --title "[Textmate AutoPR] ${{variables.date}}" --org $(orgUrl) -p DevDiv
+            az repos pr create --draft true --title "[Textmate AutoPR] $env:BUILD_BUILDNUMBER" --org $(orgUrl) -p DevDiv
         }
         else
         {
