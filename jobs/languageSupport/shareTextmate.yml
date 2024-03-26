@@ -8,7 +8,7 @@ resources:
       type: git
       name: VS-Platform
 
-trigger: main
+trigger: none
 pr: none
 
 pool: 

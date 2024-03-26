@@ -81,6 +81,3 @@ extends:
               node_modules
               dist
               i18n
-
-        - task: ComponentGovernanceComponentDetection@0
-          displayName: Component Governance Detection
