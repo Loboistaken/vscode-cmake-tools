@@ -37,9 +37,12 @@ steps:
             git config --global user.email '$env:EMAIL'
             git config --global user.name '$env:USERNAME'
             git add *; git commit -m "updating textmate"
+            Write-Output "commited"
             git push --set-upstream origin updatingCMakeTextmates/$env:BUILD_BUILDNUMBER
+            Write-Output "pushed"
             $env:AZURE_DEVOPS_EXT_PAT = $env:SYSTEM_ACCESSTOKEN
-            az repos pr create --draft true --title "[Textmate AutoPR] $env:BUILD_BUILDNUMBER" --org $env:ORGURL -p DevDiv
+            az repos pr create --draft true --title "[Textmate AutoPR] $env:BUILD_BUILDNUMBER" --org $env:ORGURL -p DevDiv --target-branch updatingCMakeTextmates/$env:BUILD_BUILDNUMBER
+            Write-Output "created PR"
         }
         else
         {
