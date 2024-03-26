@@ -16,6 +16,9 @@ pool:
   demands:
     - ImageOverride -equals AzurePipelinesWindows2022compliant
 
+variables:
+  date: $(Date:yyMMdd)$(Rev:rrr)
+
 steps:
   - checkout: self
   - checkout: VS-Platform
@@ -29,11 +32,11 @@ steps:
         Write-Output $differences
         if ( $differences )
         {
-            git checkout -b updatingCMakeTextmates/$(Date:yyMMdd)$(Rev:rrr)
+            git checkout -b updatingCMakeTextmates/${{variables.date}}
             git add *; git commit -m "updating textmate"
-            git push --set-upstream origin updatingCMakeTextmates/$(Date:yyMMdd)$(Rev:rrr)
+            git push --set-upstream origin updatingCMakeTextmates/${{variables.date}}
             $env:AZURE_DEVOPS_EXT_PAT = $(System.AccessToken)
-            az repos pr create --draft true --title "[Textmate AutoPR] $(Date:yyMMdd)$(Rev:rrr)" --org $(orgUrl) -p DevDiv
+            az repos pr create --draft true --title "[Textmate AutoPR] ${{variables.date}}" --org $(orgUrl) -p DevDiv
         }
         else
         {
