@@ -19,7 +19,7 @@ pool:
 steps:
   - checkout: self
   - checkout: VS-Platform
-  - task: CmdLine@2
+  - task: PowerShell@2
     inputs: 
       script: |
         Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/$(targetPath)
