@@ -6,7 +6,7 @@ resources:
       clean: true
     - repository: VS-Platform
       type: git
-      name: VS-Platform
+      name: DevDiv/VS-Platform
 
 trigger: none
 pr: none
