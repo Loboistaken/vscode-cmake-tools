@@ -24,6 +24,7 @@ steps:
       targetType: inline
       script: |
         Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/${{ variables.targetPath }}
+        git diff
         $differences = git diff --exit-code
         if ( $differences )
         {
