@@ -29,7 +29,7 @@ steps:
         Write-Output "${{variables.targetPath}}"
         Copy-Item $(Build.SourcesDirectory)/vscode-cmake-tools/syntaxes/* $(Build.SourcesDirectory)/VS-Platform/src/Productivity/TextMate/VSWindows/Setup/Starterkit/Extensions/cmake/Syntaxes
         $differences = git diff --exit-code
-        Write-Output $differences
+        Write-Output "$differences"
         if ( $differences )
         {
             git checkout -b updatingCMakeTextmates/${{variables.date}}
