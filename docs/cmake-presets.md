@@ -5,6 +5,7 @@ CMake supports two files that allow users to specify common configure, build, an
 `CMakePresets.json` is for saving project-wide builds. `CMakeUserPresets.json` is for developers to save their own local builds. Their integration is available in CMake Tools version 1.7 and later.
 
 This article contains information about `CMakePresets.json` integration in the CMake Tools extension for Visual Studio Code. Here are helpful links:
+
 - For more information on the format of `CMakePresets.json`, see the official [CMake documentation](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html).
 - For more information on the Microsoft vendor maps and macro expansion, see [`CMakePresets.json` and `CMakeUserPresets.json` Microsoft vendor maps](https://docs.microsoft.com/cpp/build/cmake-presets-json-reference).
 - For more information on how to use `CMakePresets.json` in Visual Studio, see [Configure and build with CMake Presets in Visual Studio](https://docs.microsoft.com/cpp/build/cmake-presets-vs).
@@ -93,10 +94,10 @@ To add a new Configure Preset to `CMakePresets.json`, run the **CMake: Add Confi
 
 ![Screenshot of the list of configure presets.](images/add-configure-preset-vscode.png)
 
- - Select **Inherit from Configure Preset** to inherit from an existing Configure Preset. For more information about inheritance, see the [list of Configure Presets](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#configure-preset).
- - Select the **Toolchain File** template to configure your CMake project with a CMake toolchain file.
- - Select the **Custom** template to configure an empty Configure Preset.
- - Select **[Scan for Compilers]** to search for C/C++ compilers on your machine.
+- Select **Inherit from Configure Preset** to inherit from an existing Configure Preset. For more information about inheritance, see the [list of Configure Presets](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#configure-preset).
+- Select the **Toolchain File** template to configure your CMake project with a CMake toolchain file.
+- Select the **Custom** template to configure an empty Configure Preset.
+- Select **[Scan for Compilers]** to search for C/C++ compilers on your machine.
 
 The selected template will be added to `CMakePresets.json` if `CMakePresets.json` exists. Otherwise, the template will be copied into a new `CMakePresets.json` file. For more information on editing Configure Presets, see [Edit presets](#edit-presets).
 
@@ -116,6 +117,7 @@ For more information on editing Build Presets, see the [list of Build Presets](h
 ### Add new Test Presets
 
 To add a new Test Preset to `CMakePresets.json`, run the **CMake: Add Test Preset** command. This command lists several Test Preset templates in the command palette:
+
 - Select **Create from Configure Preset** to display a list of `configurePresets` values defined in `CMakePresets.json`. After you select a Configure Preset, an empty Test Preset associated with the selected Configure Preset will be created.
 - Select **Inherit from Test Preset** to display a list of `testPresets` values defined in `CMakePresets.json`. After you select a Test Preset, a new Test Preset that inherits from the selected Test Preset will be created.
 - Select the **Custom** template to configure an empty Test Preset.
@@ -264,6 +266,7 @@ The following settings can be used temporarily when CMakePresets integration is 
 ## Unsupported commands
 
 The following commands are not supported when `CMakePresets.json` integration is enabled:
+
 - **CMake: Quick Start**
 - **CMake: Select Variant**
 - **CMake: Scan for Kits**
